@@ -1,0 +1,44 @@
+services:
+  nginx-proxy:
+    image: 'jc21/nginx-proxy-manager:latest'
+    container_name: nginx-proxy
+    ports:
+      - '80:80'
+      - '443:443'
+      - '81:81'
+    environment:
+      TZ: Europe/Kiev
+      user: 1000:10
+      DB_MYSQL_HOST: "mariadb"
+      DB_MYSQL_PORT: 3306
+      DB_MYSQL_USER: "npm"
+      DB_MYSQL_PASSWORD: "Q#GNTJ!E2vr4"
+      DB_MYSQL_NAME: "npm"
+      DISABLE_IPV6: 'true'
+    volumes:
+      - /volume2/docker/nginx-proxy/data:/data:rw
+      - /volume2/docker/nginx-proxy/letsencrypt:/etc/letsencrypt:rw
+    depends_on:
+      - mariadb
+    networks:
+      - frontend
+    restart: unless-stopped
+
+  mariadb:
+    image: 'jc21/mariadb-aria:latest'
+    container_name: nginx-proxy-database
+    environment:
+      MYSQL_ROOT_PASSWORD: 'Q#GNTJ!E2vr4'
+      MYSQL_DATABASE: 'npm'
+      MYSQL_USER: 'npm'
+      MYSQL_PASSWORD: 'Q#GNTJ!E2vr4'
+      MARIADB_AUTO_UPGRADE: '1'
+    volumes:
+      - /volume2/docker/mariadb:/var/lib/mysql:rw
+    networks:
+      - frontend
+    restart: unless-stopped
+
+networks:
+   frontend:
+     driver: bridge
