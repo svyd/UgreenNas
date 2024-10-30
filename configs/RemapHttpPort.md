@@ -93,7 +93,7 @@ while inotifywait -e close_write "$CONFIG_FILE"; do
     update_listen_directives
 done
 ```
-Next, create a file for the service definition like /etc/systemd/system/nginx-listen-monitor.service and paste the following content inside:
+Next, create a file for the service definition like `/etc/systemd/system/nginx-listen-monitor.service` and paste the following content inside:
 
 ```
 [Unit]
@@ -109,6 +109,90 @@ ExecStartPre=/bin/bash -c 'while ! systemctl is-active docker; do echo "Waiting 
 [Install]
 WantedBy=multi-user.target
 ```
+Repeat these steps for the ssl config files.
+
+Create the file `/usr/local/bin/update_nginx_listen_secure.sh`
+
+    $ sudo nano /usr/local/bin/update_nginx_listen_secure.sh
+
+and paste the following content inside:
+
+```
+#!/bin/bash
+
+CONFIG_FILE="/etc/nginx/ugreen_ssl_redirect.conf"
+
+SEARCH_LISTEN="listen 443 ssl;"
+REPLACE_LISTEN="listen 8443 ssl;"
+
+SEARCH_LISTEN_IPV6="listen \[::\]:443 ssl;"
+REPLACE_LISTEN_IPV6="listen \[::\]:8443 ssl;"
+
+# Directory and command for restarting Docker Compose
+DOCKER_COMPOSE_DIR="/volume1/docker_compose/traefik"
+DOCKER_COMPOSE_CMD="sudo docker compose restart"
+
+# Function to update listen directives
+update_listen_directives() {
+    local changed=false
+
+    if grep -q "$SEARCH_LISTEN" "$CONFIG_FILE"; then
+    echo "Updating IPv4 config..."
+        sed -i "s/$SEARCH_LISTEN/$REPLACE_LISTEN/" "$CONFIG_FILE"
+        changed=true
+    fi
+
+    if grep -q "$SEARCH_LISTEN_IPV6" "$CONFIG_FILE"; then
+    echo "Updating IPv6 config..."
+        sed -i "s/$SEARCH_LISTEN_IPV6/$REPLACE_LISTEN_IPV6/" "$CONFIG_FILE"
+        changed=true
+    fi
+
+    if [ "$changed" = true ]; then
+        echo "Changes detected."
+
+        echo "Reloading nginx..."
+        sudo systemctl reload nginx
+
+        echo "Waiting for nginx to reload..."
+        sleep 3
+
+        echo "Restarting traefik..."
+        (cd "$DOCKER_COMPOSE_DIR" && $DOCKER_COMPOSE_CMD)
+    fi
+}
+
+# Initial update
+update_listen_directives
+
+while inotifywait -e close_write "$CONFIG_FILE"; do
+    echo "Detected changes in $CONFIG_FILE, updating listen directives..."
+    update_listen_directives
+done
+```
+Next, create a file for the service definition like `/etc/systemd/system/nginx-listen-secure-monitor.service` and paste the following content inside:
+```
+[Unit]
+Description=Monitor /etc/nginx/ugreen_ssl_redirect.conf and update listen directives
+After=network.target
+
+[Service]
+ExecStart=/usr/local/bin/update_nginx_listen_secure.sh
+Restart=always
+User=root
+ExecStartPre=/bin/bash -c 'while ! systemctl is-active docker; do echo "Waiting for docker..."; sleep 5; done'
+
+[Install]
+WantedBy=multi-user.target
+```
+
+Make the scripts executable:
+
+```
+$ sudo chmod +x /usr/local/bin/update_nginx_listen.sh
+$ sudo chmod +x /usr/local/bin/update_nginx_listen_secure.sh
+```
+
 
 Reload the systemctl deamon:
 
@@ -118,14 +202,18 @@ Enable and start the service:
 
     $ sudo systemctl enable nginx-listen-monitor.service
     $ sudo systemctl start nginx-listen-monitor.service
+    $ sudo systemctl enable nginx-listen-secure-monitor.service
+    $ sudo systemctl start nginx-listen-secure-monitor.service
 
 You can always get the current status (or find information to debug errors) with:
 
     $ sudo systemctl status nginx-listen-monitor.service
+    $ sudo systemctl status nginx-listen-secure-monitor.service
 
 A quick check shows that port 80 is no longer used.
 
     User@DXP4800PLUS:~$ sudo netstat -ltnp | grep -w ':80'
+    User@DXP4800PLUS:~$ sudo netstat -ltnp | grep -w ':443'
 
 6. Profit.
 
