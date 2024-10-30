@@ -52,7 +52,7 @@ SEARCH_LISTEN_IPV6="listen \[::\]:80;"
 REPLACE_LISTEN_IPV6="listen \[::\]:8081;"
 
 # Directory and command for restarting Docker Compose
-DOCKER_COMPOSE_DIR="/volume1/docker_compose/traefik"
+DOCKER_COMPOSE_DIR="/volume2/docker/nginx-proxy"
 DOCKER_COMPOSE_CMD="sudo docker compose restart"
 
 # Function to update listen directives
@@ -80,7 +80,7 @@ update_listen_directives() {
         echo "Waiting for nginx to reload..."
         sleep 3
 
-        echo "Restarting traefik..."
+        echo "Restarting nginx-proxy..."
         (cd "$DOCKER_COMPOSE_DIR" && $DOCKER_COMPOSE_CMD)
     fi
 }
@@ -129,7 +129,7 @@ SEARCH_LISTEN_IPV6="listen \[::\]:443 ssl;"
 REPLACE_LISTEN_IPV6="listen \[::\]:8443 ssl;"
 
 # Directory and command for restarting Docker Compose
-DOCKER_COMPOSE_DIR="/volume1/docker_compose/traefik"
+DOCKER_COMPOSE_DIR="/volume2/docker/nginx-proxy"
 DOCKER_COMPOSE_CMD="sudo docker compose restart"
 
 # Function to update listen directives
@@ -157,7 +157,7 @@ update_listen_directives() {
         echo "Waiting for nginx to reload..."
         sleep 3
 
-        echo "Restarting traefik..."
+        echo "Restarting nginx-proxy..."
         (cd "$DOCKER_COMPOSE_DIR" && $DOCKER_COMPOSE_CMD)
     fi
 }
@@ -212,8 +212,8 @@ You can always get the current status (or find information to debug errors) with
 
 A quick check shows that port 80 is no longer used.
 
-    User@DXP4800PLUS:~$ sudo netstat -ltnp | grep -w ':80'
-    User@DXP4800PLUS:~$ sudo netstat -ltnp | grep -w ':443'
+    $ sudo netstat -ltnp | grep -w ':80'
+    $ sudo netstat -ltnp | grep -w ':443'
 
 6. Profit.
 
