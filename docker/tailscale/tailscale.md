@@ -1,3 +1,4 @@
+```
 version: '3'
 services:
   tailscale:
@@ -5,7 +6,7 @@ services:
     hostname: covenant
     network_mode: host
     environment:
-          - TS_AUTHKEY=tskey-auth-kUiyiqgsmH11CNTRL-HkEovFJ6KmcY6q1hg7wCmc52RHFMBKJN
+          - TS_AUTHKEY=AUTH_KEY
           - TS_EXTRA_ARGS=--advertise-routes=192.168.4.0/22 --advertise-exit-node
           - TS_STATE_DIR=/var/lib/tailscale
           - TS_USERSPACE=false
@@ -17,3 +18,4 @@ services:
       - /dev/net/tun:/dev/net/tun
     volumes:
       - /volume2/docker/tailscale:/var/lib/tailscale:rw
+```
