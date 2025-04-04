@@ -5,8 +5,8 @@ services:
     hostname: covenant
     network_mode: host
     environment:
-          - TS_AUTHKEY=tskey-auth-kdDB8jwXLo11CNTRL-MA1WZBChTsNEKeFdJKYetNVTfnAwqoQS
-          - TS_EXTRA_ARGS=--advertise-routes=192.168.4.0/22 --accept-routes
+          - TS_AUTHKEY=tskey-auth-kUiyiqgsmH11CNTRL-HkEovFJ6KmcY6q1hg7wCmc52RHFMBKJN
+          - TS_EXTRA_ARGS=--advertise-routes=192.168.4.0/22 --advertise-exit-node
           - TS_STATE_DIR=/var/lib/tailscale
           - TS_USERSPACE=false
     container_name: tailscale
