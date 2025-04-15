@@ -40,9 +40,15 @@ Create a new folder /opt/portainer
 
     sudo mkdir /opt/portainer
 
-```docker run -d -p 8000:8000 -p 9443:9443 --name=portainer --restart=always -v /var/run/docker.sock:/var/run/docker.sock -v /opt/portainer:/data portainer/portainer-ce:latest```
+```
+docker run -d -p 8000:8000 -p 9443:9443 --name=portainer --restart=always -v /var/run/docker.sock:/var/run/docker.sock -v /opt/portainer:/data portainer/portainer-ce:latest
+```
 
 ### [Install Pi-hole](https://docs.pi-hole.net/docker/)
+
+Create a new folder /opt/pihole/pihole/etc-pihole
+
+    sudo mkdir /opt/pihole/pihole/etc-pihole
 
 ```
 services:
