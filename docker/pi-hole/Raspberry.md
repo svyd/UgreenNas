@@ -48,7 +48,7 @@ docker run -d -p 8000:8000 -p 9443:9443 --name=portainer --restart=always -v /va
 
 Create a new folder /opt/pihole/pihole/etc-pihole
 
-    sudo mkdir /opt/pihole/pihole/etc-pihole
+    sudo mkdir /opt/pihole/etc-pihole
 
 ```
 services:
@@ -66,6 +66,6 @@ services:
             # If using Docker's default `bridge` network setting the dns listening mode should be set to 'all'
             FTLCONF_dns_listeningMode: 'all'
         volumes:
-            - '/opt/pihole/pihole/etc-pihole:/etc/pihole'
+            - '/opt/pihole/etc-pihole:/etc/pihole'
         restart: unless-stopped
 ```

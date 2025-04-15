@@ -13,5 +13,5 @@ services:
       # If using Docker's default `bridge` network setting the dns listening mode should be set to 'all'
       FTLCONF_dns_listeningMode: "all"
     volumes:
-      - "/opt/pihole/pihole/etc-pihole:/etc/pihole"
+      - "/opt/pihole/etc-pihole:/etc/pihole"
     restart: unless-stopped
