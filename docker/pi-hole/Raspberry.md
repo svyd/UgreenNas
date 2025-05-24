@@ -1,11 +1,16 @@
 # Guide how to configure a Raspberry Pi as a Pi-hole server
 
 ## Introduction
-
+In case of ssh remote host identification has changed error during ssh to host
+```
+ssh-keygen -R 192.168.4.3
+```
 ### [Install Docker](https://pimylifeup.com/raspberry-pi-docker/)
 
 ```
 sudo apt update
+```
+```
 sudo apt upgrade
 ```
 
