@@ -74,3 +74,9 @@ services:
             - '/opt/pihole/etc-pihole:/etc/pihole'
         restart: unless-stopped
 ```
+
+### Testing
+Check if Pi-hole is reachable:
+```
+dig @192.168.4.3 google.com
+```
