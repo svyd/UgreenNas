@@ -3,6 +3,50 @@ date && df -h && vcgencmd measure_temp
 
 New Install
 
+Sat 19 Jul 18:34:00 EEST 2025
+Filesystem      Size  Used Avail Use% Mounted on
+udev            320M     0  320M   0% /dev
+tmpfs            91M  3.9M   87M   5% /run
+/dev/mmcblk0p2   59G  3.6G   52G   7% /
+tmpfs           454M     0  454M   0% /dev/shm
+tmpfs           5.0M   12K  5.0M   1% /run/lock
+/dev/mmcblk0p1  510M   57M  454M  12% /boot/firmware
+tmpfs            91M     0   91M   0% /run/user/1000
+temp=63.4'C
+
+Wed  2 Jul 21:49:28 EEST 2025
+Filesystem      Size  Used Avail Use% Mounted on
+udev            318M     0  318M   0% /dev
+tmpfs            91M  3.7M   88M   5% /run
+/dev/mmcblk0p2   59G  3.5G   52G   7% /
+tmpfs           454M     0  454M   0% /dev/shm
+tmpfs           5.0M   12K  5.0M   1% /run/lock
+/dev/mmcblk0p1  510M   57M  454M  12% /boot/firmware
+tmpfs            91M     0   91M   0% /run/user/1000
+temp=59.1'C
+
+Tue  1 Jul 18:04:28 EEST 2025
+Filesystem      Size  Used Avail Use% Mounted on
+udev            318M     0  318M   0% /dev
+tmpfs            91M  3.7M   88M   5% /run
+/dev/mmcblk0p2   59G  3.5G   52G   7% /
+tmpfs           454M     0  454M   0% /dev/shm
+tmpfs           5.0M   12K  5.0M   1% /run/lock
+/dev/mmcblk0p1  510M   57M  454M  12% /boot/firmware
+tmpfs            91M     0   91M   0% /run/user/1000
+temp=59.6'C
+
+Sat 28 Jun 14:12:31 EEST 2025
+Filesystem      Size  Used Avail Use% Mounted on
+udev            318M     0  318M   0% /dev
+tmpfs            91M  3.3M   88M   4% /run
+/dev/mmcblk0p2   59G  3.4G   52G   7% /
+tmpfs           454M     0  454M   0% /dev/shm
+tmpfs           5.0M   12K  5.0M   1% /run/lock
+/dev/mmcblk0p1  510M   57M  454M  12% /boot/firmware
+tmpfs            91M     0   91M   0% /run/user/1000
+temp=58.5'C
+
 ## SanDisk 64 Gb card
 Fri 27 Jun 10:44:58 EEST 2025
 Filesystem      Size  Used Avail Use% Mounted on
