@@ -3,6 +3,17 @@ date && df -h && vcgencmd measure_temp
 
 New Install
 
+Fri 12 Sep 16:38:56 EEST 2025
+Filesystem      Size  Used Avail Use% Mounted on
+udev            320M     0  320M   0% /dev
+tmpfs            91M  9.3M   82M  11% /run
+/dev/mmcblk0p2   59G  3.8G   52G   7% /
+tmpfs           454M     0  454M   0% /dev/shm
+tmpfs           5.0M   12K  5.0M   1% /run/lock
+/dev/mmcblk0p1  510M   57M  454M  12% /boot/firmware
+tmpfs            91M     0   91M   0% /run/user/1000
+temp=59.1'C
+
 Sat 19 Jul 18:34:00 EEST 2025
 Filesystem      Size  Used Avail Use% Mounted on
 udev            320M     0  320M   0% /dev
