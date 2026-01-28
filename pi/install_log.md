@@ -1,6 +1,17 @@
 ```
 date && df -h && vcgencmd measure_temp
 
+Wed 28 Jan 20:43:43 EET 2026
+Filesystem      Size  Used Avail Use% Mounted on
+udev            317M     0  317M   0% /dev
+tmpfs           182M  3.6M  178M   2% /run
+/dev/mmcblk0p2   59G  3.9G   52G   7% /
+tmpfs           454M     0  454M   0% /dev/shm
+tmpfs           5.0M   12K  5.0M   1% /run/lock
+/dev/mmcblk0p1  510M   67M  444M  14% /boot/firmware
+tmpfs            91M     0   91M   0% /run/user/1000
+temp=47.2'C
+
 Fri 16 Jan 00:09:16 EET 2026
 Filesystem      Size  Used Avail Use% Mounted on
 udev            317M     0  317M   0% /dev
@@ -236,4 +247,14 @@ tmpfs           5.0M   12K  5.0M   1% /run/lock
 /dev/mmcblk0p1  510M   57M  454M  12% /boot/firmware
 tmpfs            91M     0   91M   0% /run/user/1000
 temp=54.2'C
+
+ifconfig eth0
+eth0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet 192.168.4.3  netmask 255.255.252.0  broadcast 192.168.7.255
+        inet6 fe80::a5b1:287b:c718:4d64  prefixlen 64  scopeid 0x20<link>
+        ether b8:27:eb:1d:6a:b9  txqueuelen 1000  (Ethernet)
+        RX packets 67716  bytes 12818604 (12.2 MiB)
+        RX errors 0  dropped 15782  overruns 0  frame 0
+        TX packets 13464  bytes 1409510 (1.3 MiB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
 ```
