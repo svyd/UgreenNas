@@ -20,3 +20,4 @@ Core containers running on my lab:
 
 ### 🛠️ Utilities
 Handy [scripts & tools](/other) for maintenance and automation
+- [SSH keys login](/other/ssh_keys_login.md) — ssh keys login

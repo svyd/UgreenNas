@@ -1,12 +1,11 @@
-## Table of Contents
-- [Default config](#default-config)
 - [Unbound](#unbound)
+- [Default config](#default-config)
 - [Macvlan setup](#macvlan-setup)
 - [Lists](#lists)
 - [Lists from Arsenii](#lists-from-arsenii)
 - [How to test](#how-to-test)
 
-[Documentation](https://docs.pi-hole.net/docker/)
+[Pi-hole documentation](https://docs.pi-hole.net/docker/)
 
 # Unbound
 ```bash
