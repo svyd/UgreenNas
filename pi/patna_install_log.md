@@ -1,5 +1,20 @@
-```
+```bash
 date && df -h && vcgencmd measure_temp
+
+Thu 29 Jan 19:25:40 EET 2026
+Filesystem      Size  Used Avail Use% Mounted on
+udev            7.9G     0  7.9G   0% /dev
+tmpfs           3.2G   15M  3.2G   1% /run
+/dev/nvme0n1p2  917G  6.3G  874G   1% /
+tmpfs           8.0G     0  8.0G   0% /dev/shm
+tmpfs           5.0M   48K  5.0M   1% /run/lock
+tmpfs           1.0M     0  1.0M   0% /run/credentials/systemd-journald.service
+tmpfs           8.0G     0  8.0G   0% /tmp
+/dev/nvme0n1p1  510M   66M  445M  13% /boot/firmware
+tmpfs           1.0M     0  1.0M   0% /run/credentials/serial-getty@ttyAMA10.service
+tmpfs           1.0M     0  1.0M   0% /run/credentials/getty@tty1.service
+tmpfs           1.6G   32K  1.6G   1% /run/user/1000
+temp=45.0'C
 
 Wed 28 Jan 19:14:45 EET 2026
 Filesystem      Size  Used Avail Use% Mounted on
@@ -26,3 +41,4 @@ eth0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
         TX packets 4696  bytes 496781 (485.1 KiB)
         TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
         device interrupt 112
+```

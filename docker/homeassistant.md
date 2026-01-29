@@ -1,3 +1,4 @@
+```bash
 version: "3.9"
 services:
   homeassistant:
@@ -15,3 +16,4 @@ services:
       - /volume2/docker/homeassistant:/config:rw
     environment:
       TZ: Europe/Kyiv
+```

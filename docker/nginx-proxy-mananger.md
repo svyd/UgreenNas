@@ -1,3 +1,4 @@
+```bash
 services:
   nginx-proxy:
     image: 'jc21/nginx-proxy-manager:latest'
@@ -42,3 +43,4 @@ services:
 networks:
    frontend:
      driver: bridge
+```

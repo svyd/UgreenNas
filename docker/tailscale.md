@@ -1,4 +1,4 @@
-```
+```bash
 version: '3'
 services:
   tailscale:

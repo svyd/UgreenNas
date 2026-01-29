@@ -1,3 +1,6 @@
+> Note: `volume1` and `volume2` are used in my NAS. `volume1` - HDDs, `volume2` - nvme
+
+```bash
 version: "3.9"
 services:
   jellyfin:
@@ -18,3 +21,4 @@ services:
       - /dev/dri/card0:/dev/dri/card0
     restart: on-failure:5
     network_mode: host
+```

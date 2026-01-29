@@ -1,19 +1,25 @@
-```
-version: "3.8"
+[Documentation](https://wg-easy.github.io/wg-easy/latest/examples/tutorials/basic-installation/)
+
+DNS, password can be configured via web admin panel.
+
+```bash
+volumes:
+  etc_wireguard:
+
 services:
   wg-easy:
-    environment:
-      - WG_HOST=185.130.53.99
-      - PASSWORD_HASH=$$2a$$12$$jnXRwK4fMQp5WhiZ/nGRWekMCBPjzf4wYRwWC1Vfck33GFCmiiUfC
-      - WG_DEFAULT_DNS=10.8.1.3
-      - WG_DEFAULT_ADDRESS=10.8.0.x
-    image: ghcr.io/wg-easy/wg-easy
+    image: ghcr.io/wg-easy/wg-easy:15
     container_name: wg-easy
+    networks:
+      wg:
+        ipv4_address: 10.42.42.42
+        ipv6_address: fdcc:ad94:bacf:61a3::2a
     volumes:
-      - /volume2/docker/wireguard-easy/etc-wireguard:/etc/wireguard
+      - /opt/docker/wg-easy/etc-wireguard:/etc/wireguard
+      - /lib/modules:/lib/modules:ro
     ports:
-      - "51820:51820/udp"
-      - "51821:51821/tcp"
+      - "51822:51822/udp" # If you are using a firewall, you need to open this port
+      - "51821:51821/tcp" # Web UI port
     restart: unless-stopped
     cap_add:
       - NET_ADMIN
@@ -21,31 +27,17 @@ services:
     sysctls:
       - net.ipv4.ip_forward=1
       - net.ipv4.conf.all.src_valid_mark=1
-    networks:
-      wg-easy:
-        ipv4_address: 10.8.1.2
-
-  pihole:
-      image: pihole/pihole
-      container_name: wg-pihole
-      environment:
-        TZ: "Europe/Kyiv"
-        FTLCONF_webserver_api_password: "5K!27dwVt%w*"
-        FTLCONF_dns_listeningMode: "all"
-      volumes:
-        - /volume2/docker/wireguard-easy/pihole/etc-pihole:/etc/pihole
-        - /volume2/docker/wireguard-easy/pihole/etc-dnsmasq.d:/etc/dnsmasq.d
-      ports:
-        - "5353:80/tcp"
-        - "8453:443/tcp"
-      restart: unless-stopped
-      networks:
-        wg-easy:
-          ipv4_address: 10.8.1.3
+      - net.ipv6.conf.all.disable_ipv6=0
+      - net.ipv6.conf.all.forwarding=1
+      - net.ipv6.conf.default.forwarding=1
 
 networks:
-  wg-easy:
+  wg:
+    driver: bridge
+    enable_ipv6: true
     ipam:
+      driver: default
       config:
-        - subnet: 10.8.1.0/24
+        - subnet: 10.42.42.0/24
+        - subnet: fdcc:ad94:bacf:61a3::/64
 ```

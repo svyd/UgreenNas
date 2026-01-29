@@ -1,4 +1,18 @@
+Cloudflare Tunnel (cloudflared) lets you securely expose your homelab services to the internet without opening any inbound firewall ports — perfect for homelabs behind CGNAT, restrictive ISPs, or if you just want to hide your home IP.
+
+```bash
+Internet → Cloudflare edge (e.g., yourdomain.com)
+                     ↓ (encrypted tunnel)
+           Your homelab → cloudflared container
+                     ↓
+           Internal service (e.g., Home Assistant on :8123)
 ```
+
+💡 Pro tip: Combine this with Cloudflare Zero Trust for free access policies (e.g., "only allow my devices" or "require 2FA") — no extra cost for homelab use.
+
+In short: it's your homelab's secure, no-port-forwarding gateway to the internet. 🌐🔐
+
+```bash
 version: '3.8'
 services:
   cloudflared:
@@ -8,7 +22,7 @@ services:
     network_mode: host
     environment:
       - TZ='Europe/Kyiv'
-    command: tunnel --no-autoupdate run --token eyJhIjoiZmM1ZDQxMmE1NDcxNjBjM2YzM2U5ODg0YjA0NWRlYzgiLCJ0IjoiYTYwZjE1OGEtNDJhMC00ZjNjLWI4NDYtODE1MjgzNTY1YjFkIiwicyI6IlpqSTBOV0l3TXpNdFl6aGxaaTAwT1RKakxUZzROV1F0WWpjME5HSmxOR1ZtTTJOaCJ9
+    command: tunnel --no-autoupdate run --token <TOKEN_HERE>
     logging:
       driver: json-file
       options:

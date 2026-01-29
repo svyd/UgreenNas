@@ -1,3 +1,4 @@
+```bash
 version: "3"
 services:
   syncthing:
@@ -16,3 +17,4 @@ services:
       interval: 1m
       timeout: 10s
       retries: 3
+```

@@ -1,5 +1,16 @@
-```
+```bash
 date && df -h && vcgencmd measure_temp
+
+Thu 29 Jan 19:51:01 EET 2026
+Filesystem      Size  Used Avail Use% Mounted on
+udev            317M     0  317M   0% /dev
+tmpfs           182M  4.3M  177M   3% /run
+/dev/mmcblk0p2   59G  3.9G   52G   7% /
+tmpfs           454M     0  454M   0% /dev/shm
+tmpfs           5.0M   12K  5.0M   1% /run/lock
+/dev/mmcblk0p1  510M   67M  444M  14% /boot/firmware
+tmpfs            91M     0   91M   0% /run/user/1000
+temp=49.4'C
 
 Wed 28 Jan 20:43:43 EET 2026
 Filesystem      Size  Used Avail Use% Mounted on
