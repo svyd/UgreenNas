@@ -37,7 +37,7 @@ services:
 
   unbound:
     container_name: unbound
-    image: klutchell/unbound
+    image: klutchell/unbound:latest
     restart: unless-stopped
     healthcheck:
       test: ["CMD", "drill", "@127.0.0.1", "dnssec.works", "A"]
